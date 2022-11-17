@@ -1,0 +1,264 @@
+/*-----------------------------------*\
+  #VARIABLE
+\*-----------------------------------*/
+
+:root {
+
+    /**
+     * Colors
+     */
+    
+    --onyx:         hsl(0, 0%, 25%);
+    --azure:        hsl(219, 77%, 60%);
+    --white:        hsl(0, 0%, 100%);
+    --platinum:     hsl(0, 0%, 91%);
+    --gainsboro:    hsl(0, 0%, 90%);
+    --red-salsa:    hsl(0, 77%, 60%);
+    --dim-gray:     hsl(0, 0%, 39%);
+    --davys-gray:   hsl(0, 0%, 30%);
+    --spanish-gray: hsl(0, 0%, 62%);
+    --quick-silver: hsl(0, 0%, 64%);
+  
+    /**
+     * Typography
+     */
+  
+    --fs-28: 28px;
+    --fs-24: 24px;
+    --fs-18: 18px;
+    --fs-15: 15px;
+    --fs-14: 14px;
+  
+    --fw-5: 500;
+    --fw-6: 600;
+    --fw-7: 700;
+  
+    /**
+     * Others 
+     */
+  
+    --px: 60px;
+    --radius: 5px;
+  
+  }
+
+body{
+    background-color: #363636;
+
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+html { 
+    background-color: #363636;
+    color: white;
+}
+
+button {
+    border: none;
+    background: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+ion-icon, span { display: inline-block; }
+
+label, img { display: block; }
+  
+input {
+  font: inherit;
+  width: 100%;
+  border: none;
+}
+
+input:focus { outline: 2px solid var(--azure); }
+
+/**
+ * Remove number input up & down button
+ */
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  appearance:         none;
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+h1{
+    color: white;
+}
+
+i, .shopping{
+    color: salmon;
+    text-shadow: 0 0 10px #ff8177;
+    
+}
+
+h2 {
+    color: salmon;
+}
+
+.section-heading {
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--gainsboro);
+
+}
+
+.cart {
+    display: flex;
+}
+
+
+.container {
+    max-width: 1440px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-item-box {
+    margin-bottom: auto;
+    background-color: #363636; 
+}
+
+.product-card:not(:last-child) { margin-bottom: 20px; }
+
+.product-card .card {
+  position: relative;
+  display:     flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  border: none;
+  border-bottom: 1px solid var(--gainsboro);
+  padding-bottom: 20px;
+  background-color: #363636;
+  color: white;
+}
+
+img { display: block; }
+
+  .card .product-img { border-radius: var(--radius); }
+
+  .card .detail .product-name, .product-id, .product-supply {
+    font-weight: var(--fw-6);
+    font-size: var(--fs-15);
+    /* color: var(--dim-gray); */
+    color: white;
+    margin-bottom: 10px;
+  }
+  
+  .card .detail .wrapper-2 {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .product-qty {
+    display:     flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid white;
+  }
+
+  .decrement {
+    border-right: 1px solid white;
+  }
+
+  .increment{
+    border-left: 1px solid white;
+  }
+  
+  .product-qty button {
+    /* background: var(--platinum); */
+    color: white;
+    width:  20px;
+    height: 20px;
+    display:         flex;
+    justify-content: center;
+    align-items:     center;
+  }
+  
+  .product-qty button:active,
+  .product-close-btn:active ion-icon { transform: scale(0.95); }
+  
+  .product-qty button ion-icon {
+    --ionicon-stroke-width: 60px;
+    font-size: 10px;
+  }
+  
+  .product-close-btn {
+    position: absolute;
+    top:   0;
+    right: 0;
+  }
+  
+  .product-close-btn ion-icon {
+    font-size: 25px;
+    color: var(--quick-silver);
+  }
+  
+  .product-close-btn:hover ion-icon { color: var(--red-salsa); }
+
+
+  .btn-outline {
+    padding: 10px 25px;
+    border: 1px solid var(--azure);
+    /* color: var(--azure); */
+    color: white;
+  }
+  
+  .btn-outline:hover {
+    background: var(--azure);
+    color: var(--white);
+  }
+  
+  .amount span {
+    color: white;
+  }
+  .amount > div {
+    display:         flex;
+    justify-content: space-between;
+  }
+  
+  .amount > div:not(:last-child) { margin-bottom: 10px; }
+  
+  .amount .total {
+    font-size: var(--fs-18);
+    font-weight: var(--fw-7);
+    color: white;
+  }
+
+  .btn { border-radius: var(--radius); }
+
+  .btn{
+    background-color: #363636;
+    border: 2px solid #ff8177;
+    color: #ff8177;
+    font-weight: bold;
+}
+
+.btn:hover{
+    background-color: #ff8177;
+    outline: white;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease ;
+}
+
+.btn:focus {
+  color: var(--white);
+  background-color: salmon ;
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  
+    .cart {
+        display: block;
+    }
+  
+  }

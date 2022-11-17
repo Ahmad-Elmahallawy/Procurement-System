@@ -1,0 +1,43 @@
+body{
+    background-color: #363636;
+
+}
+
+
+h1{
+    color: white;
+}
+
+
+i, .supplies{
+    color: salmon;
+    text-shadow: 0 0 10px #ff8177;
+    
+}
+
+label{
+    color: white;
+    /* text-shadow: 0 0 3px white; */
+    font-size: 20px;
+}
+
+.btn{
+    background-color: #363636;
+    border: 2px solid #ff8177;
+    color: #ff8177;
+    font-weight: bold;
+}
+
+.btn:hover{
+    background-color: #ff8177;
+    color: white;
+    cursor: pointer;
+}
+
+th{
+    color: white;
+}
+
+td{
+    color: white;
+}

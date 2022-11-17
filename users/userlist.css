@@ -1,0 +1,88 @@
+
+body{
+    background-color: #363636;
+
+}
+
+
+h1{
+    color: white;
+}
+
+
+i, .users{
+    color: salmon;
+    text-shadow: 0 0 10px #ff8177;
+    
+}
+
+/* label{
+    color: white;
+    font-size: 20px;
+} */
+
+.btn {
+    background-color: #363636;
+    border: 1px solid #ff8177;
+    color: #ff8177;
+    font-weight: bold;
+}
+
+.btn:hover{
+    background-color: #ff8177;
+    color: white;
+    cursor: pointer;
+}
+
+.btn:focus{
+    outline: none;
+}
+
+.btn:disabled {
+    outline: 0;
+    box-shadow: none;
+    background-color: #ff8177;
+  }
+
+/**
+ * Remove focus styles for non-keyboard focus.
+ */
+ :focus:not(:focus-visible) {
+    outline: 0;
+    box-shadow: none;
+    background-color: #ff8177;
+
+  }
+  
+  
+  /**
+   * Cross-browser styles for explicit focus via 
+   * keyboard-based (eg Tab) navigation or the
+   * .focus-visible utility class.
+   */
+  :focus,
+  .focus-visible:focus:not(:focus-visible) {
+    outline: 0;
+    /* box-shadow:0 0 0 .2rem #fff; */
+  }
+
+th{
+    color: white;
+}
+
+td{
+    color: white;
+}
+
+.updates {
+    display: flex;
+    
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 0;
+    max-width: 1000px;
+    min-height: 100vh;
+}
+  }
