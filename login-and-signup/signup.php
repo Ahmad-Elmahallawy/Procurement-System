@@ -88,8 +88,8 @@ if(isset($_POST['submit'])){
                     <label class="choice">You are a:</label>
                     <select name="user_type" id="user">
                         <option value="customer">Customer</option>
-                        <option value="suppler">Supplier</option>
-                        <option value="customer">Supervisor</option>
+                        <option value="supplier">Supplier</option>
+                        <option value="supervisor">Supervisor</option>
                     </select>
                 </div>
                 <div class="btn">
