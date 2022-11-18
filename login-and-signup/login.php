@@ -64,8 +64,9 @@ if(isset($_POST['submit'])){
     require_once ('../header/header.php');
     ?>
     <div class="wrapper">
-        <form action="" method="post">
-            <div class="form-container">
+
+        <div class="form-container">
+            <form action="" method="post">
                 <div class="title">
                     <h3>Login</h3>
                     <?php
@@ -91,10 +92,9 @@ if(isset($_POST['submit'])){
                     <p>Don't have an account? <a href="signup.php">Signup</a></p>
                     <span id="submit-error"></span>
                 </div>
-            </div>
-        </form>
-    </div>
-    <script src="registration_validation.js"></script>
+            </form>
+        </div>
+        <script src="registration_validation.js"></script>
 </body>
 
 </html>
