@@ -23,13 +23,13 @@ if(isset($_POST['submit'])){
           $_SESSION['user_name'] = $row['name'];
           header('location:../index.php');
     }
-    elseif($row['user_type'] == 'supplier'){
-      $_SESSION['user_name'] = $row['name'];
-      header('location:../supplier/supplier.php');
+        elseif($row['user_type'] == 'supplier'){
+          $_SESSION['user_name'] = $row['name'];
+          header('location:../supplier/supplier.php');
 }
-elseif($row['user_type'] == 'supervisor'){
-  $_SESSION['user_name'] = $row['name'];
-  header('location:../quotations/request1.php');
+        elseif($row['user_type'] == 'supervisor'){
+          $_SESSION['user_name'] = $row['name'];
+          header('location:../quotations/request1.php');
 }
         else{
           $error[] = "incorrect email or password!";
