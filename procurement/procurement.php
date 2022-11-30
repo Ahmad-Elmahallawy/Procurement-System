@@ -21,7 +21,7 @@
   
   <div class="wrapper">
 
-    <form action="" method="post" id="form">
+    <form action="connection.php" method="post" id="form">
 
       <div class="form-container">
 
@@ -30,44 +30,20 @@
         </div>
 
         <div class="inputs">
-          <select class="dd">
-            <option disabled selected> Select Catagory: * </option>
-            <option value="tech">Tech</option>
-            <option value="desk">Desk</option>
-            <option value="chair">Chair</option>
-          </select>
-          <br>
-        </div>
-
-
-
-        <div class="inputs">
           <input type="text" name="description" id="description" required />
           <label>Describe the Item: * </label>
           <br>
         </div>
 
         <div class="inputs">
-          <input type="number" name="number" required min="1" max="100" />
+          <input type="number" name="quantity" required min="1" max="100" />
           <label>Quantity: * </label>
           <br>
         </div>
 
-        <div class="inputs">
-          <input type="text" name="condition" id="condition" required />
-          <label>Describe the Condition: </label>
-          <br>
-        </div>
-
-        <div class="date">
-          <label> Date: * </label>
-          <input type="date" name="date" id="date" placeholder="date (required)" required />
-
-          <br>
-        </div>
-
         <div class="btn">
-          <input type="submit" name="submit" value="Generate RFQ" class="form-btn" id="btn1" />
+          <input type="submit" name="submit" value="Generate RFQ" class="form-btn" id="btn1">
+          <input type="button" name="trans" value="trans RFQ" class="form-btn" id="btn1" onclick="window.location.href='../backstore/product_backstore.php';" />
           <input type="reset" name="reset" value="Reset RFQ" class="form-btn" id="btn2" />
         </div>
 
