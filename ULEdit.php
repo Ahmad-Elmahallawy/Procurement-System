@@ -2,7 +2,7 @@
 
 <?php
 session_start();
-$con=mysqli_connect("localhost","root","","myusers") or die("Error");
+$con=mysqli_connect("localhost","root","","soen341_db") or die("Error");
 
 
 ?>
@@ -28,11 +28,11 @@ $con=mysqli_connect("localhost","root","","myusers") or die("Error");
 
 
     <?php
-          if(isset($_GET['ID'])){
+          if(isset($_GET['id'])){
 
-            $user_id=$_GET['ID'];
-            $users="SELECT *FROM users_form WHERE id='$user_id'";
-            $result = mysqli_query($con, $sql);
+            $user_id=$_GET['id'];
+            $users="SELECT *FROM user_form WHERE id='$user_id'";
+            $result = mysqli_query($con, $users);
             $resultCheck = mysqli_num_rows($result);
 
             if ($resultCheck>0){
@@ -40,39 +40,41 @@ $con=mysqli_connect("localhost","root","","myusers") or die("Error");
 
 
     ?>
-     <form action="">
+     <form action="" method="POST">
+        <input type="hidden" name="user_id" value="<?php echo $row['id'];?>">
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <label for="">Full Name</label>
-                    <input type="text" name="Fulln"class="form control">
+                    <input type="text" name="user_name" value="<?php echo $row['user_name'];?>"class="form control">
                 </div>
                 <div class="col-md-12 mb-3">
                     <label for="">Email</label>
-                    <input type="text" name="eemail"class="form control">
-                </div>
-                <div class="col-md-12 mb-3">
-                    <label for="">User Type</label>
-                    <input type="text" name="ut"class="form control">
+                    <input type="text" name="email" value="<?php echo $row['email'];?>"class="form control">
                 </div>
                 <div class="col-md-12 mb-3">
                     <label for="">Password</label>
-                    <input type="text" name="pw"class="form control">
+                    <input type="text" name="password" class="form control">
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label for="">User Type</label>
+                    <input type="text" name="user_type"value="<?php echo $row['user_type'];?>"class="form control">
                 </div>
                 
+                
                 <div class="col-md-12 mb-3">
-                <button type="submit" class="btn btn-primary ">Update User</button>
+                <button type="submit" name="update_user"class="btn btn-primary ">Update User</button>
             </div>
             </div>
             
         </form>
-                 <tr>
-                    <td><?php echo $row['ID'];?></td>
-                    <td><?php echo $row['FullName'];?></td>
+                 <!-- <tr>
+                    <td><?php echo $row['id'];?></td>
+                    <td><?php echo $row['user_type'];?></td>
                     <td><?php echo $row['email'];?></td>
-                    <td><?php echo $row['usertype'];?></td>
-                    <td><a href="ULEdit.php?id=<?php echo $row['ID'];?>" class="btn btn-primary">Edit</a></td>
+                    <td><?php echo $row['password'];?></td>
+                    <td><a href="ULEdit.php?id=<?php echo $row['id'];?>" class="btn btn-primary">Edit</a></td>
                     <td><button type="button" class="btn btn-primary">Delete</button></td>
-                </tr>
+                </tr> -->
                <?php
                
             }
