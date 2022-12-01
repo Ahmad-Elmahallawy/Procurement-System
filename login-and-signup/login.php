@@ -1,8 +1,6 @@
 <?php
-@include 'config.php';
 
-session_start();
-
+require_once ('../header/header.php');
 if(isset($_POST['submit'])){
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $pass = md5($_POST['password']);
@@ -15,11 +13,7 @@ if(isset($_POST['submit'])){
     {
         $row = mysqli_fetch_array($result);
 
-        if($row['name'] == 'admin'){
-          $_SESSION['admin_name']  = $row['name'];
-          header('location:../users/userlist.php');
-        }
-        elseif($row['user_type'] == 'customer'){
+        if($row['user_type'] == 'customer'){
           $_SESSION['user_name'] = $row['name'];
           header('location:../index.php');
     }
@@ -29,7 +23,7 @@ if(isset($_POST['submit'])){
 }
         elseif($row['user_type'] == 'supervisor'){
           $_SESSION['user_name'] = $row['name'];
-          header('location:../quotations/request1.php');
+          header('location:../users/userlist.php');
 }
         else{
           $error[] = "incorrect email or password!";
@@ -68,9 +62,7 @@ if(isset($_POST['submit'])){
 </head>
 
 <body>
-    <?php
-    require_once ('../header/header.php');
-    ?>
+
     <div class="wrapper">
 
         <div class="form-container">
@@ -91,7 +83,8 @@ if(isset($_POST['submit'])){
                     <span id="email-error"></span>
                 </div>
                 <div class="inputs">
-                    <input type="password" name="password" required id="pass1" onkeydown="validatePassword()">
+                    <input type="password" name="password" required id="pass1" onkeydown="validatePassword()"
+                        onclick="validatePassword()">
                     <label>Password</label>
                     <span id="password-error"></span>
                 </div>
