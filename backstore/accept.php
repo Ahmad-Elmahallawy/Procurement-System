@@ -2,14 +2,18 @@
 require 'connection2.php';
 
 $id = $_GET['id'];
+$image = $_GET['image'];
+$user_name = $_GET['user_name'];
+$product_name = $_GET['product_name'];
 $quantity = $_GET['quantity'];
-$name = $_GET['description'];
+$price = $_GET['price'];
+
 
 if ($conn -> connect_error){
     die("Connection to the DB failed: ".$conn->connect_error);
 }else{
-    $stmt= $conn->prepare("INSERT INTO cart (name,quantity) VALUES(?,?)");
-    $stmt->bind_param("si",$name,$quantity);
+    $stmt= $conn->prepare("INSERT INTO cart (user_name,product_name,quantity,price) VALUES(?,?,?,?)");
+    $stmt->bind_param("ssii",$user_name,$product_name,$quantity,$price);
     $result = $stmt->execute();
     if($result){
         echo "Inserted to Cart";

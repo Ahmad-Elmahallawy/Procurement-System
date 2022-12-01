@@ -36,15 +36,17 @@
             <table class="table">
                 <div class="row">
                     <tr>
-                        <th scope="col"> ID </th>
-                        <th scope="col"> Description</th>
+                        <th scope="col"> User </th>
+                        <th scope="col"> Product</th>
                         <th scope="col"> Quantity</th>
+                        <th scope="col"> Price</th>
+                        <th scope="col"> Action</th>
                         <th scope="col"> Action</th>
                     </tr>
 
                     <!-- fetching data from database -->
                     <?php
-                        $sql = "SELECT * FROM form;";
+                        $sql = "SELECT * FROM pending;";
                         $result = mysqli_query($conn, $sql);
                         $resultCheck = mysqli_num_rows($result);
 
@@ -52,11 +54,13 @@
                             while($row = mysqli_fetch_assoc($result)){ 
                     ?>
                                 <tr>
-                                    <td><?php echo $row['id'];?></td>
-                                    <td><?php echo $row['description'];?></td>
+                                    <td><?php echo $row['image'];?></td>
+                                    <td><?php echo $row['user_name'];?></td>
+                                    <td><?php echo $row['pro_name'];?></td>
                                     <td><?php echo $row['quantity'];?></td>
+                                    <td><?php echo $row['price'];?></td>
                                     <td> 
-                                        <a class="btn" onclick="AConfirm()" href="accept.php?id=<?php echo $row['id'];?>&description=<?php echo $row['description'];?>&quantity=<?php echo $row['quantity'];?>"> Accept 
+                                        <a class="btn" onclick="AConfirm()" href="accept.php?image=<?php echo $row['image'];?>id=<?php echo $row['id'];?>user_name=<?php echo $row['user_name'];?>&product_name=<?php echo $row['product_name'];?>&quantity=<?php echo $row['quantity'];?>&price=<?php echo $row['price'];?>"> Accept 
                                     </td>
                                     <td> 
                                         <a class="btn" onclick="DConfirm()" href="reject.php?id=<?php echo $row['id'];?>"> Reject 
