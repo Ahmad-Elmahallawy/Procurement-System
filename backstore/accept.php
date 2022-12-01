@@ -1,5 +1,9 @@
 <?php
-require 'connection2.php';
+
+$hostname = 'localhost';
+$db_username = 'root';
+$db_password = '';
+$db_name = "soen341_db";
 
 $id = $_GET['id'];
 $image = $_GET['image'];
@@ -7,16 +11,18 @@ $user_name = $_GET['user_name'];
 $product_name = $_GET['product_name'];
 $quantity = $_GET['quantity'];
 $price = $_GET['price'];
+$status='Approved';
 
-
+//DB connection
+$conn = mysqli_connect($hostname,$db_username,$db_password,$db_name);
 if ($conn -> connect_error){
     die("Connection to the DB failed: ".$conn->connect_error);
 }else{
-    $stmt= $conn->prepare("INSERT INTO cart (id,user_name,product_name,image,quantity,price) VALUES(?,?,?,?,?,?)");
-    $stmt->bind_param("isssii",$id,$user_name,$product_name,$image,$quantity,$price);
+    $stmt= $conn->prepare("INSERT INTO cart (user_name,product_name,image,quantity,price,status) VALUES(?,?,?,?,?,?)");
+    $stmt->bind_param("sssiis",$user_name,$product_name,$image,$quantity,$price,$status);
     $result = $stmt->execute();
     if($result){
-        echo "Inserted to Cart";
+        echo "Approved Item Inserted to Cart";
     }else{
         echo "Error moving record to Cart table";
     }

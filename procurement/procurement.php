@@ -13,7 +13,6 @@
 </head>
 
 <body>
-  <script type="text/javascript" src="../delete.js"></script>
   
   <?php
     require_once ('../header/header.php');

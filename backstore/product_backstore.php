@@ -13,15 +13,14 @@
 
 <body>
 
-    <?php
-        include_once 'connection2.php'; 
+    <?php 
         require_once ('../header/header.php');
     ?>
     <script>
-        function DConfirm() {
-            confirm("Are you sure to reject the RFQ?");
+        function reject_confirm() {
+            confirm("Are you sure to reject the RFQ?")
         }
-        function AConfirm() {
+        function accept_confirm() {
             confirm("Are you sure to accept the RFQ?");
         }
     </script>
@@ -47,6 +46,12 @@
 
                     <!-- fetching data from database -->
                     <?php
+                        $hostName = 'localhost';
+                        $dbUsername = 'root';
+                        $dbPassword = '';
+                        $dbName = "soen341_db";
+                        $conn = mysqli_connect($hostName,$dbUsername,$dbPassword,$dbName);
+
                         $sql = "SELECT * FROM pending;";
                         $result = mysqli_query($conn, $sql);
                         $resultCheck = mysqli_num_rows($result);
@@ -61,10 +66,10 @@
                                     <td><?php echo $row['quantity'];?></td>
                                     <td><?php echo $row['price'];?></td>
                                     <td> 
-                                        <a class="btn" onclick="AConfirm()" href="accept.php?image=<?php echo $row['image'];?>id=<?php echo $row['id'];?>user_name=<?php echo $row['user_name'];?>&product_name=<?php echo $row['product_name'];?>&quantity=<?php echo $row['quantity'];?>&price=<?php echo $row['price'];?>"> Accept 
+                                        <a class="btn" onclick="accept_confirm()" href="accept.php?image=<?php echo $row['image'];?>&id=<?php echo $row['id'];?>&user_name=<?php echo $row['user_name'];?>&product_name=<?php echo $row['product_name'];?>&quantity=<?php echo $row['quantity'];?>&price=<?php echo $row['price'];?>"> Accept 
                                     </td>
                                     <td> 
-                                        <a class="btn" onclick="DConfirm()" href="reject.php?id=<?php echo $row['id'];?>"> Reject 
+                                        <a class="btn" onclick="reject_confirm()" href="reject.php?image=<?php echo $row['image'];?>&id=<?php echo $row['id'];?>&user_name=<?php echo $row['user_name'];?>&product_name=<?php echo $row['product_name'];?>&quantity=<?php echo $row['quantity'];?>&price=<?php echo $row['price'];?>"> Reject 
                                     </td>
                                 </tr>
                     <?php 

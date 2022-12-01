@@ -1,6 +1,7 @@
 <?php
 $hostname='localhost';
-$username = 'root';
+$db_username = 'root';
+$db_password='';
 $db_name='soen341_db';
 
 $user_name = 'karin';
@@ -10,8 +11,8 @@ $price= $_POST['price'];
 $image = NULL;
 
 
-//Database connction
-$conn = new mysqli ($hostname,$username,'',$db_name);
+//DB connection
+$conn = new mysqli ($hostname,$db_username,$db_password,$db_name);
 if ($conn -> connect_error){
     die("Connection to the DB failed: ".$conn->connect_error);
 }else{
