@@ -1,10 +1,23 @@
+<?php
+    @include '../login-and-signup/config.php';
+    session_start();
+?>
 <section class="header">
     <div class="topnav" id="myTopnav">
         <a href="../cart/cart.php">Final Quotation</a>
         <a href="../users/userlist.php">Users</a>
         <a href="../supplier/supplier.php">Suppliers</a>
         <a href="../procurement/procurement.php">RFQ</a>
-        <a href="../login-and-signup/login.php">Login</a>
+        <?php
+                if(isset($_SESSION['user_name']))
+                {
+                    echo "<a href='../login-and-signup/logout.php'> Log Out </a>";
+                }
+
+                else{
+                    echo "<a href='../login-and-signup/login.php'>Login</a>";
+                }
+        ?>
         <a href="../index.php">Home</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
@@ -23,7 +36,7 @@
     background-size: cover;
     position: relative;
     margin-bottom: 40px;
-    
+
 }
 
 .topnav {

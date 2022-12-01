@@ -80,7 +80,8 @@ if(isset($_POST['submit'])){
                     <span id="password-error"></span>
                 </div>
                 <div class="inputs">
-                    <input type="password" name="cpassword" required id="pass2" onkeydown="validatePassword2()">
+                    <input minlength="8" type="password" name="cpassword" required id="pass2"
+                        onkeydown="validatePassword2()">
                     <label>Confirm Passowrd</label>
                     <span id="cpassword-error"></span>
                 </div>

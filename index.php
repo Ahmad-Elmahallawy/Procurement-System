@@ -1,3 +1,13 @@
+<?php
+
+    @include '../login-and-signup/config.php';
+    session_start();
+    //$username = $_SESSION['user_name'];
+
+    // if(!isset($username))
+    //     header('location:login-and-signup/login.php');
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,13 +24,24 @@
 
 <body>
 
+
     <section class="header">
-              <div class="topnav" id="myTopnav">
+        <div class="topnav" id="myTopnav">
             <a href="./cart/cart.php">Final Quotation</a>
             <a href="./users/userlist.php">Users</a>
             <a href="./supplier/supplier.php">Suppliers</a>
             <a href="./procurement/procurement.php">RFQ</a>
-            <a href="./login-and-signup/login.php">Login</a>
+            <?php
+                if (isset($_SESSION["user_name"]))
+                {
+                    echo "<a href='login-and-signup/logout.php'> LogOut </a>";
+                }
+
+                else{
+                    echo "<a href='login-and-signup/login.php'>Login</a>";
+                }
+            ?>
+
             <a href=" ./index.php">Home</a>
             <a href="javascript:void(0);" class="icon" onclick="navB()">
                 <i class="fa fa-bars"></i>
@@ -32,11 +53,21 @@
             <p>
                 A place where you can buy and sell <br />any product that you want!
             </p>
-            <a href="./login-and-signup/signup.php" class="hero-btn">Sign Up To Know More</a>
+            <p><?php 
+                if(isset($_SESSION['user_name'])){
+                    echo "Welcome     " .$_SESSION['user_name'] ."!";
+                }
+                
+                else{
+                    echo "<a href='login-and-signup/signup.php' class='hero-btn'>Sign Up To Know More</a>";
+                }
+            ?></p>
+
+
         </div>
     </section>
-  
-<!--       <section class="offer">
+
+    <!--       <section class="offer">
       <h1>Some of what we offer</h1>
       <p>
         We have variety of different categories! You will find what you want
@@ -98,66 +129,66 @@
       </div>
     </section> -->
 
-      <section class="offer">
-      <h1>Some of what we offer</h1>
-      <p>
-        We have variety of different categories! You will find what you want
-      </p>
+    <section class="offer">
+        <h1>Some of what we offer</h1>
+        <p>
+            We have variety of different categories! You will find what you want
+        </p>
 
-      <div class="row">
-        <a href="./product-pages/construction.php" id="offer">
-          <div class="offer-col">
-            <h3>Construction</h3>
-            <img src="/images/construction.svg" alt="construction" />
-            <p>
-              get all the construction tools you need. from a hammer to heavy
-              tools for buildings
-            </p>
+        <div class="row">
+            <a href="./product-pages/construction.php" id="offer">
+                <div class="offer-col">
+                    <h3>Construction</h3>
+                    <img src="/images/construction.svg" alt="construction" />
+                    <p>
+                        get all the construction tools you need. from a hammer to heavy
+                        tools for buildings
+                    </p>
+                </div>
+            </a>
+            <a href="./product-pages/school.php" id="offer">
+                <div class="offer-col">
+                    <h3>School</h3>
+                    <img src="/images/school.svg" alt="construction" />
+                    <p>We offer everything you need to finish your upcoming assingment</p>
+                </div>
+            </a>
+            <a href="./product-pages/books.php" id="offer">
+                <div class="offer-col">
+                    <h3>Books</h3>
+                    <img src="/images/book.svg" alt="construction" />
+                    <p>Get your favourite book to read during your free time</p>
+                </div>
+            </a>
+
         </div>
-        </a>
-        <a href="./product-pages/school.php"  id="offer">
-        <div class="offer-col">
-          <h3>School</h3>
-          <img src="/images/school.svg" alt="construction" />
-          <p>We offer everything you need to finish your upcoming assingment</p>
+        <div class="row">
+            <a href="./product-pages/technology.php" id="offer">
+                <div class="offer-col">
+                    <h3>Technology</h3>
+                    <img src="/images/technology.svg" alt="construction" />
+                    <p>
+                        Buy the latest devices and view see the special deals from
+                        suppliers.
+                    </p>
+                </div>
+            </a>
+            <a href="./product-pages/games.php" id="offer">
+                <div class="offer-col">
+                    <h3>Games</h3>
+                    <img src="/images/games.svg" alt="construction" />
+                    <p>Are you a gamer? We have what you need</p>
+                </div>
+            </a>
+            <a href="./product-pages/appliances.php" id="offer">
+                <div class="offer-col">
+                    <h3>Appliances</h3>
+                    <img src="/images/appliance.svg" alt="construction" />
+                    <p>Buy any applicance you are looking for with just one click</p>
+                </div>
+            </a>
+
         </div>
-        </a>
-        <a href="./product-pages/books.php"  id="offer">
-        <div class="offer-col">
-          <h3>Books</h3>
-          <img src="/images/book.svg" alt="construction" />
-          <p>Get your favourite book to read during your free time</p>
-        </div>
-      </a>
-        
-      </div>
-      <div class="row">
-        <a href="./product-pages/technology.php"  id="offer">
-        <div class="offer-col"> 
-          <h3>Technology</h3>
-          <img src="/images/technology.svg" alt="construction" />
-          <p>
-            Buy the latest devices and view see the special deals from
-            suppliers.
-          </p>
-          </div>
-        </a>
-        <a href="./product-pages/games.php"  id="offer">
-        <div class="offer-col">
-          <h3>Games</h3>
-          <img src="/images/games.svg" alt="construction" />
-          <p>Are you a gamer? We have what you need</p>
-        </div>
-      </a>  
-       <a href="./product-pages/appliances.php"  id="offer">
-        <div class="offer-col">
-          <h3>Appliances</h3>
-          <img src="/images/appliance.svg" alt="construction" />
-          <p>Buy any applicance you are looking for with just one click</p>
-          </div>
-        </a>
-        
-      </div>
     </section>
 
     <div class="cont1">
