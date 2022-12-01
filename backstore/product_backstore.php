@@ -36,6 +36,7 @@
             <table class="table">
                 <div class="row">
                     <tr>
+                        <th scope="col"> Image </th>
                         <th scope="col"> User </th>
                         <th scope="col"> Product</th>
                         <th scope="col"> Quantity</th>
@@ -54,9 +55,9 @@
                             while($row = mysqli_fetch_assoc($result)){ 
                     ?>
                                 <tr>
-                                    <td><?php echo $row['image'];?></td>
+                                    <td><img src="../images/<?php echo $row['image'];?>"></td>
                                     <td><?php echo $row['user_name'];?></td>
-                                    <td><?php echo $row['pro_name'];?></td>
+                                    <td><?php echo $row['product_name'];?></td>
                                     <td><?php echo $row['quantity'];?></td>
                                     <td><?php echo $row['price'];?></td>
                                     <td> 

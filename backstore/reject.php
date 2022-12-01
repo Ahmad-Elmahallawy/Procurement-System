@@ -2,7 +2,7 @@
 require 'connection2.php';
 
 $id = $_GET['id'];
-$query = "DELETE FROM form WHERE id = '$id';";
+$query = "DELETE FROM pending WHERE id = '$id';";
 $result = mysqli_query($conn, $query);
 if ($result) {
     echo"YES";

@@ -1,6 +1,6 @@
 <?php
 
-include '../config.php';
+include '../backstore/connection2.php';
 session_start();
 // $user_id = $_SESSION['user_id'];
 
@@ -13,7 +13,7 @@ session_start();
 //    session_destroy();
 //    header('location:../login-and-signup/login.php');
 // };
-$user_name = $_SESSION['user_name'];
+//$user_name = $_SESSION['user_name'];
 
 if(isset($_POST['add_to_cart'])){
 
@@ -22,12 +22,12 @@ if(isset($_POST['add_to_cart'])){
    $product_image = $_POST['product_image'];
    $product_quantity = $_POST['product_quantity'];
 
-   $select_cart = mysqli_query($conn, "SELECT * FROM `pending` WHERE product_name = '$product_name' AND user_name = '$user_name'") or die('query failed');
+   $select_cart = mysqli_query($conn, "SELECT * FROM `pending` WHERE product_name = '$product_name' AND user_name = 'karin'") or die('query failed');
 
    if(mysqli_num_rows($select_cart) > 0){
       $message[] = 'product already added!';
    }else{
-      mysqli_query($conn, "INSERT INTO `cart`(user_name, product_name, price, image, quantity) VALUES('$user_name', '$product_name', '$product_price', '$product_image', '$product_quantity')") or die('query failed');
+      mysqli_query($conn, "INSERT INTO `pending`(user_name, product_name, price, image, quantity) VALUES('karin', '$product_name', '$product_price', '$product_image', '$product_quantity')") or die('query failed');
       $message[] = 'product added!';
    }
 
@@ -62,7 +62,7 @@ require_once ('../header/header.php');
 if(isset($message)){
    foreach($message as $message){
       echo    '<script type="text/javascript">
-      window.onload = function () { alert("'.$message.'");}
+      window.click = function () { alert("'.$message.'");}
   </script>';
    }
 }
@@ -83,11 +83,11 @@ if(isset($message)){
    ?>
       <form method="post" class="box" action="">
          <img src="../images/<?php echo $fetch_product['image']; ?>" alt="">
-         <div class="name"><?php echo $fetch_product['name']; ?></div>
+         <div class="name"><?php echo $fetch_product['product_name']; ?></div>
          <!-- <div class="price">$<?php echo $fetch_product['price']; ?>/-</div> -->
          <input type="number" min="1" name="product_quantity" value="1">
          <input type="hidden" name="product_image" value="<?php echo $fetch_product['image']; ?>">
-         <input type="hidden" name="product_name" value="<?php echo $fetch_product['name']; ?>">
+         <input type="hidden" name="product_name" value="<?php echo $fetch_product['product_name']; ?>">
          <input type="hidden" name="product_price" value="<?php echo $fetch_product['price']; ?>">
          <input type="submit" value="add to cart" name="add_to_cart" class="btn">
       </form>
@@ -98,10 +98,6 @@ if(isset($message)){
 
    </div>
 
-</div>
-
-<div class="cart-btn">  
-      <a href="../cart/cart.php" class="btn btn-primary btn-block">Generate Cart</a>
 </div>
 
 

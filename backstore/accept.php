@@ -12,8 +12,8 @@ $price = $_GET['price'];
 if ($conn -> connect_error){
     die("Connection to the DB failed: ".$conn->connect_error);
 }else{
-    $stmt= $conn->prepare("INSERT INTO cart (user_name,product_name,quantity,price) VALUES(?,?,?,?)");
-    $stmt->bind_param("ssii",$user_name,$product_name,$quantity,$price);
+    $stmt= $conn->prepare("INSERT INTO cart (id,user_name,product_name,image,quantity,price) VALUES(?,?,?,?,?,?)");
+    $stmt->bind_param("isssii",$id,$user_name,$product_name,$image,$quantity,$price);
     $result = $stmt->execute();
     if($result){
         echo "Inserted to Cart";
@@ -21,7 +21,7 @@ if ($conn -> connect_error){
         echo "Error moving record to Cart table";
     }
 
-    $query = "DELETE FROM form WHERE id = '$id';";
+    $query = "DELETE FROM pending WHERE id = '$id';";
     $result = mysqli_query($conn, $query);
     if ($result) {
         echo"Deleted";
