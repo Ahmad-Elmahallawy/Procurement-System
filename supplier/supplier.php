@@ -13,12 +13,43 @@
     
     <?php
         require_once ('../header/header.php');
+         // Update to our database
+        if(isset($_POST['btn-add-supply'])){
+
+        $servername = "localhost";
+        $username = "username";
+        $password = "password";
+        $dbname = "myDB";
+
+        $title = $_GET['title']
+        $supplier_name = $_GET['name']
+        $price = $_GET['price']
+
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+        }
+        //check for table name
+        $sql = "INSERT INTO Supply (title, name, price)
+        VALUES ('$title','$supplier_name','$price')";
+
+        if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+        } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        $conn->close();
+        }
+        
     ?>
 
     <div class="wrapper">
     <div class="container mt-4">
         <h1 class="display-4 text-center"><i class="fa-solid fa-boxes-packing"></i> My <span class="supplies">Supplies</span>List</h1>
-        <form action="" id="supply-form" onsubmit="return false">
+        <form method="post" id="supply-form" onsubmit="return false">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" id="title" class="form-control">
@@ -31,7 +62,9 @@
                 <label for="price">Price ($)</label>
                 <input type="number" id="price" class="form-control">
             </div>
-            <input value= "Add Supply" type="submit" class="btn btn-primary btn-block">
+        
+            <input value="Add Supply" name ="btn-add-supply" type="submit" class="btn btn-primary btn-block">
+
         </form>
         <table class="table table-striped mt-5">
             <thread>
