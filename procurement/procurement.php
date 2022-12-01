@@ -30,14 +30,20 @@
         </div>
 
         <div class="inputs">
-          <input type="text" name="description" id="description" required />
-          <label>Describe the Item: * </label>
+          <input type="text" name="product_name" id="description" required />
+          <label>Product Name: * </label>
           <br>
         </div>
 
         <div class="inputs">
           <input type="number" name="quantity" required min="1" max="100" />
           <label>Quantity: * </label>
+          <br>
+        </div>
+
+        <div class="inputs">
+          <input type="number" name="price" required min="1" max="1000000" />
+          <label>Estimated Price: * </label>
           <br>
         </div>
 
