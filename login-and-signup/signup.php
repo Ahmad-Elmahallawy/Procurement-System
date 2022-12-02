@@ -54,15 +54,16 @@ if(isset($_POST['submit'])){
 
                 <div class="title">
                     <h3>Signup</h3>
-                    <?php
+                </div>
+                <?php
                     if(isset($error)){
                         foreach($error as $error){
-                            echo '<span class="error-msg">' .$error. '</span>';
+                            echo '<div class= "title">';
+                            echo '<p class="error-msg">' .$error. '</p>';
+                            echo '</div>';
                     };
                 };
                 ?>
-
-                </div>
 
                 <div class="inputs">
                     <input type="text" name="name" required id="contact-name" onkeyup="validateName()">

@@ -69,15 +69,17 @@ if(isset($_POST['submit'])){
         <div class="form-container">
             <form action="" method="post">
                 <div class="title">
-                    <h3>Login</h3>
-                    <?php
+                    <h3 style="display:block;">Login</h3>
+                </div>
+                <?php
                     if(isset($error)){
                         foreach($error as $error){
-                            echo '<span class="error-msg">' .$error. '</span>';
+                            echo '<div class= "title">';
+                            echo '<p class="error-msg">' .$error. '</p>';
+                            echo '</div>';
                     };
                 };
                 ?>
-                </div>
                 <div class="inputs">
                     <input type="text" name="email" required id="contact-email" onkeydown="validateEmail()">
                     <label>Email</label>
@@ -94,8 +96,13 @@ if(isset($_POST['submit'])){
                     <p>Don't have an account? <a href="signup.php">Signup</a></p>
                     <span id="submit-error"></span>
                 </div>
+
             </form>
+
+
         </div>
+
+
         <script src="registration_validation.js"></script>
 </body>
 

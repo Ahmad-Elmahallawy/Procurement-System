@@ -84,13 +84,12 @@ body {
 }
 
 .title {
-  display: flex;
-  justify-content: center;
   color: #ff8177;
   height: 60px;
 }
 
 .title h3 {
+  display: block;
   font-size: 25px;
 }
 
@@ -142,12 +141,13 @@ select {
   font-size: 16px;
 }
 
-.form-container .title .error-msg{
+.error-msg{
   background: crimson;
   color: #fff;
   border-radius: 5px;
   font-size: 18px;
 }
+
 
 
 @media (max-width: 450px) {
