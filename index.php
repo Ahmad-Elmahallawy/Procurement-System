@@ -28,13 +28,12 @@
     <section class="header">
         <div class="topnav" id="myTopnav">
             <?php
-                $select = " SELECT * FROM user_form WHERE id = '".$_SESSION['id']."'";
-                $result = mysqli_query($conn, $select);
-                $row = mysqli_fetch_array($result);
                 if(isset($_SESSION['id']))
                 {
 
-
+                    $select = " SELECT * FROM user_form WHERE id = '".$_SESSION['id']."'";
+                    $result = mysqli_query($conn, $select);
+                    $row = mysqli_fetch_array($result);
                     if($row['user_type'] == 'customer')
                     {
                         echo "<a href='cart/cart.php'>Final Quotation</a>";
@@ -73,10 +72,11 @@
             </p>
             <p>
                 <?php 
-                $select = " SELECT * FROM user_form WHERE id = '".$_SESSION['id']."'";
-                $result = mysqli_query($conn, $select);
-                $row = mysqli_fetch_array($result);
+
                 if(isset($_SESSION['id'])){
+                    $select = " SELECT * FROM user_form WHERE id = '".$_SESSION['id']."'";
+                    $result = mysqli_query($conn, $select);
+                    $row = mysqli_fetch_array($result);
                     echo "Welcome     " .$row['user_name'] ."!";
                 }
                 

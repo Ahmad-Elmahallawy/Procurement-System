@@ -6,13 +6,12 @@
     <div class="topnav" id="myTopnav">
 
         <?php
+                
                 if(isset($_SESSION['id']))
                 {
-
                     $select = " SELECT * FROM user_form WHERE id = '".$_SESSION['id']."'";
                     $result = mysqli_query($conn, $select);
                     $row = mysqli_fetch_array($result);
-
 
                     if($row['user_type'] == 'customer')
                     {
@@ -24,7 +23,7 @@
                     elseif($row['user_type'] == 'supervisor')
                     {
                         echo "<a href='../users/userlist.php'>Users</a>";
-                        echo "<a href='backstore/product_backstore.php'>Backstore</a>";
+                        echo "<a href='../backstore/product_backstore.php'>Backstore</a>";
                     }
 
                     else{
