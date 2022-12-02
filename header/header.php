@@ -17,13 +17,14 @@
                     if($row['user_type'] == 'customer')
                     {
                         echo "<a href='../cart/cart.php'>Final Quotation</a>";
+                        echo "<a href= '../product-pages/products.php'> Products </a>";
                         echo "<a href='../procurement/procurement.php'>RFQ</a>";
                     }
 
                     elseif($row['user_type'] == 'supervisor')
                     {
                         echo "<a href='../users/userlist.php'>Users</a>";
-                        echo "<a href='../supplier/supplier.php'>Suppliers</a>";
+                        echo "<a href='backstore/product_backstore.php'>Backstore</a>";
                     }
 
                     else{
