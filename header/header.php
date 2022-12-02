@@ -4,13 +4,32 @@
 ?>
 <section class="header">
     <div class="topnav" id="myTopnav">
-        <a href="../cart/cart.php">Final Quotation</a>
-        <a href="../users/userlist.php">Users</a>
-        <a href="../supplier/supplier.php">Suppliers</a>
-        <a href="../procurement/procurement.php">RFQ</a>
+
         <?php
                 if(isset($_SESSION['user_name']))
                 {
+
+                    $select = " SELECT * FROM user_form WHERE name = '".$_SESSION['user_name']."'";
+                    $result = mysqli_query($conn, $select);
+                    $row = mysqli_fetch_array($result);
+
+
+                    if($row['user_type'] == 'customer')
+                    {
+                        echo "<a href='../cart/cart.php'>Final Quotation</a>";
+                        echo "<a href='../procurement/procurement.php'>RFQ</a>";
+                    }
+
+                    elseif($row['user_type'] == 'supervisor')
+                    {
+                        echo "<a href='../users/userlist.php'>Users</a>";
+                        echo "<a href='../supplier/supplier.php'>Suppliers</a>";
+                    }
+
+                    else{
+                        echo "<a href='../supplier/supplier.php'>My Supplies</a>";
+
+                    }
                     echo "<a href='../login-and-signup/logout.php'> Log Out </a>";
                 }
 
