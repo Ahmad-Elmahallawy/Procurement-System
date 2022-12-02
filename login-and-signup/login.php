@@ -14,23 +14,24 @@ if(isset($_POST['submit'])){
         $row = mysqli_fetch_array($result);
 
         if($row['user_type'] == 'customer'){
-          $_SESSION['user_name'] = $row['name'];
+          $_SESSION['id'] = $row['id'];
           header('location:../index.php');
     }
         elseif($row['user_type'] == 'supplier'){
-          $_SESSION['user_name'] = $row['name'];
+          $_SESSION['id'] = $row['id'];
           header('location:../supplier/supplier.php');
 }
         elseif($row['user_type'] == 'supervisor'){
-          $_SESSION['user_name'] = $row['name'];
+          $_SESSION['id'] = $row['id'];
           header('location:../users/userlist.php');
 }
-        else{
-          $error[] = "incorrect email or password!";
-        }
+
     
-    
-}
+}        else{
+    $error[] = "incorrect email or password!";
+  }
+
+
 };
 
 ?>
