@@ -39,10 +39,12 @@
         VALUES ('$title','$price','NULL' , '$supplier_name')";
 
         if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+            echo "<p class='success' style = 'background-color: green; color: white; text-align:center; ' onload = 'test()'>New record created successfully</p>";
         } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
         }
+
+        header('Location: supplier.php');
         $conn->close();
         }
         
