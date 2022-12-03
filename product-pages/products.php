@@ -1,55 +1,35 @@
 <?php
+require_once ('../header/header.php');
+include '../login-and-signup/config.php';
+$user_id = $_SESSION['id'];
 
-include '../backstore/connection2.php';
+$select = " SELECT * FROM user_form WHERE id = '$user_id'";
+$result = mysqli_query($conn, $select);
+$row = mysqli_fetch_array($result);
+$user_name = $row['user_name'];
 
-// hardcode username for now
-$user_name = 'karin';
 
-if(!isset($user_name)){
-   header('location:../login-and-signup/login.php');
-};
+if(isset($_POST['add_to_pending'])){
+   $product_name = $_POST['product_name'];
+   $product_price = $_POST['product_price'];
+   $product_image = $_POST['product_image'];
+   $product_quantity = $_POST['product_quantity'];
+   $supplier = 'NULL';
 
-$product_name = $_POST['product_name'];
-$product_price = $_POST['product_price'];
-$product_image = $_POST['product_image'];
-$product_quantity = $_POST['product_quantity'];
+$select_pending = mysqli_query($conn, "SELECT * FROM `pending` WHERE product_name = '$product_name' AND user_id = '$user_id'") or die('query failed');
 
-if(isset($_POST['add_to_cart'])){
-
-   $select_cart = mysqli_query($conn, "SELECT * FROM `pending` WHERE product_name = '$product_name' AND user_name = '$user_name'") or die('query failed');
-
-   if(mysqli_num_rows($select_cart) > 0){
-      $message[] = 'product already added!';
-   }else{
-      mysqli_query($conn, "INSERT INTO `pending`(user_name, product_name, price, image, quantity) VALUES('$user_name', '$product_name', '$product_price', '$product_image', '$product_quantity')") or die('query failed');
-      $message[] = 'product added!';
-   }
-
-};
-
-if ($conn -> connect_error){
-   die("Connection to the DB failed: ".$conn->connect_error);
-}elseif ($product_quantity*$product_price >= 5000) {
-   $stmt= $conn->prepare("INSERT INTO pending (user_name, product_name, quantity, price, image) VALUES(?,?,?,?,?)");
-   $stmt->bind_param("ssiis",$user_name, $product_name, $product_quantity, $product_price, $product_image);
-   $stmt->execute();
-   echo
-       '<script type="text/javascript">
-   window.onload = function () { alert("RFQ sent for Approval");  location="procurement.php";}
-       </script>';
-}else{
-   $stmt= $conn->prepare("INSERT INTO cart (user_name, product_name, image, quantity, price, status) VALUES(?,?,?,?,?,?)");
-   $stmt->bind_param("sssiis",$user_name, $product_name, $product_quantity, $product_price, $product_image, $status);
-   $result = $stmt->execute();
-
-   if($result){
-       echo "Approved Item Inserted to Cart";
-       header("location: procurement.php");
-   }else{
-       echo "Error moving record to Cart table";
-   }
+if(mysqli_num_rows($select_pending) > 0){
+   $message[] = 'RFQ already submitted for approval!';
+}else if ($product_price * $product_quantity >= 5000)
+{
+   mysqli_query($conn, "INSERT INTO `pending`(user_id, user_name, product_name, price, image, quantity, supplier) VALUES('$user_id', '$user_name', '$product_name', '$product_price', '$product_image', '$product_quantity', '$supplier')") or die('query failed');
+   $message[] = 'RFQ submitted for approval!';
 }
-
+else {
+   mysqli_query($conn, "INSERT INTO `cart`(user_id, user_name, product_name, price, image, quantity, status, supplier) VALUES('$user_id', '$user_name', '$product_name', '$product_price', '$product_image', '$product_quantity', 'Approved', '$supplier')") or die('query failed');
+   $message[] = 'RFQ submitted for approval!';
+}
+}
 ?>
 
 <!DOCTYPE html>
@@ -71,18 +51,15 @@ if ($conn -> connect_error){
     <title> Products </title>
   </head>
 <body>
-
-
-   
+ 
 <?php
-require_once ('../header/header.php');
-if(isset($message)){
-   foreach($message as $message){
-      echo    '<script type="text/javascript">
-      window.onclick = function () { alert("'.$message.'");}
-  </script>';
+   if(isset($message)){
+      foreach($message as $message){
+         echo    '<script type="text/javascript">
+         window.onload = function () { alert("'.$message.'");}
+   </script>';
+      }
    }
-}
 ?>
 
 <div class="container">
@@ -98,14 +75,14 @@ if(isset($message)){
       if(mysqli_num_rows($select_product) > 0){
          while($fetch_product = mysqli_fetch_assoc($select_product)){
    ?>
-      <form method="post" class="box" action="../">
+      <form method="post" class="box" action="">
          <img src="../images/<?php echo $fetch_product['image']; ?>" alt="">
          <div class="name"><?php echo $fetch_product['product_name']; ?></div>
          <input type="number" min="1" name="product_quantity" value="1">
          <input type="hidden" name="product_image" value="<?php echo $fetch_product['image']; ?>">
          <input type="hidden" name="product_name" value="<?php echo $fetch_product['product_name']; ?>">
          <input type="hidden" name="product_price" value="<?php echo $fetch_product['price']; ?>">
-         <input type="submit" value="Generate RFQ" name="add_to_cart" class="btn">
+         <input type="submit" value="Generate RFQ" name="add_to_pending" class="btn">
       </form>
    <?php
       };

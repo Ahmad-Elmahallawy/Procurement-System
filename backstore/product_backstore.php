@@ -40,17 +40,15 @@
                         <th scope="col"> Product</th>
                         <th scope="col"> Quantity</th>
                         <th scope="col"> Price</th>
+                        <th scope="col"> Total</th>
+                        <th scope="col"> Supplier</th>
                         <th scope="col"> Action</th>
                         <th scope="col"> Action</th>
                     </tr>
 
                     <!-- fetching data from database -->
                     <?php
-                        $hostName = 'localhost';
-                        $dbUsername = 'root';
-                        $dbPassword = '';
-                        $dbName = "soen341_db";
-                        $conn = mysqli_connect($hostName,$dbUsername,$dbPassword,$dbName);
+                        include '../login-and-signup/config.php';
 
                         $sql = "SELECT * FROM pending;";
                         $result = mysqli_query($conn, $sql);
@@ -60,16 +58,18 @@
                             while($row = mysqli_fetch_assoc($result)){ 
                     ?>
                                 <tr>
-                                    <td><img src="../images/<?php echo $row['image'];?>"></td>
+                                    <td><img id='img' src="../images/<?php echo $row['image'];?>"><?php echo ($row['image'] == NULL)?'No Image':''?></td>
                                     <td><?php echo $row['user_name'];?></td>
                                     <td><?php echo $row['product_name'];?></td>
                                     <td><?php echo $row['quantity'];?></td>
                                     <td><?php echo $row['price'];?></td>
+                                    <td><?php echo $total = ($row['price']*$row['quantity']);?></td>
+                                    <td><?php echo $row['supplier'];?></td>
                                     <td> 
-                                        <a class="btn" onclick="accept_confirm()" href="accept.php?image=<?php echo $row['image'];?>&id=<?php echo $row['id'];?>&user_name=<?php echo $row['user_name'];?>&product_name=<?php echo $row['product_name'];?>&quantity=<?php echo $row['quantity'];?>&price=<?php echo $row['price'];?>"> Accept 
+                                        <a class="btn" onclick="accept_confirm()" href="accept.php?image=<?php echo $row['image'];?>&id=<?php echo $row['id'];?>&user_id=<?php echo $row['user_id'];?>&user_name=<?php echo $row['user_name'];?>&product_name=<?php echo $row['product_name'];?>&quantity=<?php echo $row['quantity'];?>&price=<?php echo $row['price'];?>"> Accept 
                                     </td>
                                     <td> 
-                                        <a class="btn" onclick="reject_confirm()" href="reject.php?image=<?php echo $row['image'];?>&id=<?php echo $row['id'];?>&user_name=<?php echo $row['user_name'];?>&product_name=<?php echo $row['product_name'];?>&quantity=<?php echo $row['quantity'];?>&price=<?php echo $row['price'];?>"> Reject 
+                                        <a class="btn" onclick="reject_confirm()" href="reject.php?image=<?php echo $row['image'];?>&id=<?php echo $row['id'];?>&user_id=<?php echo $row['user_id'];?>&user_name=<?php echo $row['user_name'];?>&product_name=<?php echo $row['product_name'];?>&quantity=<?php echo $row['quantity'];?>&price=<?php echo $row['price'];?>"> Reject 
                                     </td>
                                 </tr>
                     <?php 
