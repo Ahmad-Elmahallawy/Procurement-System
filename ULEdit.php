@@ -40,7 +40,7 @@ $con=mysqli_connect("localhost","root","","soen341_db") or die("Error");
 
 
     ?>
-     <form action="" method="POST">
+     <form action="code.php" method="POST">
         <input type="hidden" name="user_id" value="<?php echo $row['id'];?>">
             <div class="row">
                 <div class="col-md-12 mb-3">
