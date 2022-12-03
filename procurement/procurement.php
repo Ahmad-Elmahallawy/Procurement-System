@@ -16,6 +16,11 @@
   
   <?php
     require_once ('../header/header.php');
+    $user_id = $_SESSION['id'];
+    $select = " SELECT * FROM user_form WHERE id = '$user_id'";
+    $result = mysqli_query($conn, $select);
+    $row = mysqli_fetch_array($result);
+    $user_name = $row['user_name'];
   ?>
   
   <div class="wrapper">
