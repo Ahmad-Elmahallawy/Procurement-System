@@ -26,6 +26,7 @@
         $title = $_POST['title'];
         $supplier_name = $_POST['name'];
         $price = $_POST['price'];
+        $sup_id = $_SESSION['id'];
 
 
         // Create connection
@@ -35,8 +36,8 @@
         die("Connection failed: " . $conn->connect_error);
         }
         //check for table name
-        $sql = "INSERT INTO products(product_name, price, image,supplier)
-        VALUES ('$title','$price','NULL' , '$supplier_name')";
+        $sql = "INSERT INTO products(product_name, price, image,supplier,supplier_id)
+        VALUES ('$title','$price','NULL' , '$supplier_name', '$sup_id')";
 
         if ($conn->query($sql) === TRUE) {
             echo "<p class='success' style = 'background-color: green; color: white; text-align:center; ' onload = 'test()'>New record created successfully</p>";
@@ -81,6 +82,29 @@
                     </tr>
                 </thread>
                 <tbody id="supply-list">
+                    <?php
+                        if(isset($_SESSION['id']))
+                        {
+                            $sup_id = $_SESSION['id'];
+                            $select = " SELECT product_name,price,supplier, supplier_id FROM products WHERE supplier_id = '$sup_id'";
+                            $result = mysqli_query($conn, $select);
+                            while($row = mysqli_fetch_assoc($result))
+                            {
+                                echo "<tr>"; 
+                                echo "<td>" .$row['product_name'] ."</td>";
+                                echo "<td>" .$row['supplier'] ."</td>";
+                                echo "<td>" .$row['price'] ."</td>";
+                                echo "<td><a href='#' class='btn btn-danger btn-sm delete'>X</a></td>";
+
+
+                                echo "</tr>"; 
+                            }
+                            
+                            
+                        }
+                    
+                    
+                    ?>
                 </tbody>
             </table>
 
