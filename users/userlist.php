@@ -6,9 +6,9 @@ $con=mysqli_connect("localhost","root","","myusers") or die("Error");
 if(isset($_POST['addBtn'])){
     $fname=$_POST['fullname'];
     $email=$_POST['email'];
-    $ut=$_POST['usertype'];
+   
 
-    $query="INSERT INTO datausers ( ID, Fullname, email, usertype) VALUES ('$fname','$email','$ut')";
+    $query="INSERT INTO datausers ( ID, Fullname, email, usertype) VALUES ('$fname','$email')";
     $query_run=mysqli_query($con, $query);
 
     if($query_run){
@@ -56,11 +56,9 @@ if(isset($_POST['addBtn'])){
         <h1 class="display-4 text-center"><span class="users">Users </span>List</h1>
     <table class="table table-striped mt-5" id="data_table">
     <tr>
-        <th>ID</th>
+       
         <th>FullName</th>
         <th>Email</th>
-        <th>User Type</th>
-        <th>Order Quotations</th>
         <th>Edit</th>
         <th>Delete</th>
         <th>
@@ -106,7 +104,7 @@ if(isset($_POST['addBtn'])){
         <tr>
         <td><input type="text" name="fullname"></td>
         <td><input type="text" name="email"></td>
-        <td><input type="text" name="usertype" ></td>
+        <!-- <td><input type="text" name="usertype" ></td> -->
         <td></td>
         <td><input type="submit" name="addBtn" id="add_button" class="btn btn-primary" onclick="add_row()" onmouseup="this.blur()" value="Add Row"></td>
         </tr>
