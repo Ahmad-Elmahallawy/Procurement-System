@@ -46,8 +46,10 @@ require_once ('../header/header.php');
          $dbName = "soen341_db";
          
          $conn = mysqli_connect($hostName,$dbUsername,$dbPassword,$dbName);
+         
+         $user_id = $_SESSION['id'];
 
-         $cart_query = mysqli_query($conn, "SELECT * FROM cart WHERE user_name = 'karin'") or die('query failed');
+         $cart_query = mysqli_query($conn, "SELECT * FROM cart WHERE user_id = '$user_id'") or die('query failed');
          $grand_total = 0;
          if(mysqli_num_rows($cart_query) > 0){
             while($fetch_cart = mysqli_fetch_assoc($cart_query)){
