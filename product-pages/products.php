@@ -1,32 +1,35 @@
 <?php
-
+require_once ('../header/header.php');
 include '../login-and-signup/config.php';
-
 $user_id = $_SESSION['id'];
-if(isset($user_id)) {
-   $select = " SELECT * FROM user_form WHERE id = '$user_id'";
-   $result = mysqli_query($conn, $select);
-   $row = mysqli_fetch_array($result);
-   $user_name = $row['user_name']
-};
 
-if(isset($_POST['add_to_cart'])){
+$select = " SELECT * FROM user_form WHERE id = '$user_id'";
+$result = mysqli_query($conn, $select);
+$row = mysqli_fetch_array($result);
+$user_name = $row['user_name'];
+
+
+if(isset($_POST['add_to_pending'])){
    $product_name = $_POST['product_name'];
    $product_price = $_POST['product_price'];
    $product_image = $_POST['product_image'];
    $product_quantity = $_POST['product_quantity'];
+   $supplier = 'NULL';
 
-   $select_pending = mysqli_query($conn, "SELECT * FROM `pending` WHERE product_name = '$product_name' AND user_name = '$user_name'") or die('query failed');
+$select_pending = mysqli_query($conn, "SELECT * FROM `pending` WHERE product_name = '$product_name' AND user_id = '$user_id'") or die('query failed');
 
-   if(mysqli_num_rows($select_pending) > 0){
-      $message[] = 'RFQ already submitted for approval!';
-   }else{
-      mysqli_query($conn, "INSERT INTO `pending`(user_name, product_name, price, image, quantity) VALUES('$user_name', '$product_name', '$product_price', '$product_image', '$product_quantity')") or die('query failed');
-      $message[] = 'RFQ submitted for approval!';
-   }
-
-};
-
+if(mysqli_num_rows($select_pending) > 0){
+   $message[] = 'RFQ already submitted for approval!';
+}else if ($product_price * $product_quantity >= 5000)
+{
+   mysqli_query($conn, "INSERT INTO `pending`(user_id, user_name, product_name, price, image, quantity, supplier) VALUES('$user_id', '$user_name', '$product_name', '$product_price', '$product_image', '$product_quantity', '$supplier')") or die('query failed');
+   $message[] = 'RFQ submitted for approval!';
+}
+else {
+   mysqli_query($conn, "INSERT INTO `cart`(user_id, user_name, product_name, price, image, quantity, status, supplier) VALUES('$user_id', '$user_name', '$product_name', '$product_price', '$product_image', '$product_quantity', 'Approved', '$supplier')") or die('query failed');
+   $message[] = 'RFQ submitted for approval!';
+}
+}
 ?>
 
 <!DOCTYPE html>
@@ -48,18 +51,15 @@ if(isset($_POST['add_to_cart'])){
     <title> Products </title>
   </head>
 <body>
-
-
-   
+ 
 <?php
-require_once ('../header/header.php');
-if(isset($message)){
-   foreach($message as $message){
-      echo    '<script type="text/javascript">
-      window.onclick = function () { alert("'.$message.'");}
-  </script>';
+   if(isset($message)){
+      foreach($message as $message){
+         echo    '<script type="text/javascript">
+         window.onload = function () { alert("'.$message.'");}
+   </script>';
+      }
    }
-}
 ?>
 
 <div class="container">
@@ -75,14 +75,14 @@ if(isset($message)){
       if(mysqli_num_rows($select_product) > 0){
          while($fetch_product = mysqli_fetch_assoc($select_product)){
    ?>
-      <form method="post" class="box" action="../">
+      <form method="post" class="box" action="">
          <img src="../images/<?php echo $fetch_product['image']; ?>" alt="">
          <div class="name"><?php echo $fetch_product['product_name']; ?></div>
          <input type="number" min="1" name="product_quantity" value="1">
          <input type="hidden" name="product_image" value="<?php echo $fetch_product['image']; ?>">
          <input type="hidden" name="product_name" value="<?php echo $fetch_product['product_name']; ?>">
          <input type="hidden" name="product_price" value="<?php echo $fetch_product['price']; ?>">
-         <input type="submit" value="Generate RFQ" name="add_to_cart" class="btn">
+         <input type="submit" value="Generate RFQ" name="add_to_pending" class="btn">
       </form>
    <?php
       };
