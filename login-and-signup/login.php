@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
 }
         elseif($row['user_type'] == 'supervisor'){
           $_SESSION['id'] = $row['id'];
-          header('location:../users/userlist.php');
+          header('location:../backstore/product_backstore.php');
 }
 
     

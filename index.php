@@ -25,8 +25,10 @@
 <body>
 
 
-    <section class="header">
-        <div class="topnav" id="myTopnav">
+    <section class="header" style=" background-image: linear-gradient(rgba(4, 9, 30,
+        0.7),rgba(4,9,30,0.7)),url(images/backgr.jpg);">
+
+        <div class=" topnav" id="myTopnav">
             <?php
                 if(isset($_SESSION['id']))
                 {
@@ -100,7 +102,7 @@
             <a href="./product-pages/construction.php" id="offer">
                 <div class="offer-col">
                     <h3>Construction</h3>
-                    <img src="/images/construction.svg" alt="construction" />
+                    <img src="images/construction.svg" alt="construction" />
                     <p>
                         get all the construction tools you need. from a hammer to heavy
                         tools for buildings
@@ -110,14 +112,14 @@
             <a href="./product-pages/school.php" id="offer">
                 <div class="offer-col">
                     <h3>School</h3>
-                    <img src="/images/school.svg" alt="construction" />
+                    <img src="images/school.svg" alt="construction" />
                     <p>We offer everything you need to finish your upcoming assingment</p>
                 </div>
             </a>
             <a href="./product-pages/books.php" id="offer">
                 <div class="offer-col">
                     <h3>Books</h3>
-                    <img src="/images/book.svg" alt="construction" />
+                    <img src="images/book.svg" alt="construction" />
                     <p>Get your favourite book to read during your free time</p>
                 </div>
             </a>
@@ -127,7 +129,7 @@
             <a href="./product-pages/technology.php" id="offer">
                 <div class="offer-col">
                     <h3>Technology</h3>
-                    <img src="/images/technology.svg" alt="construction" />
+                    <img src="images/technology.svg" alt="construction" />
                     <p>
                         Buy the latest devices and view see the special deals from
                         suppliers.
@@ -137,14 +139,14 @@
             <a href="./product-pages/games.php" id="offer">
                 <div class="offer-col">
                     <h3>Games</h3>
-                    <img src="/images/games.svg" alt="construction" />
+                    <img src="images/games.svg" alt="construction" />
                     <p>Are you a gamer? We have what you need</p>
                 </div>
             </a>
             <a href="./product-pages/appliances.php" id="offer">
                 <div class="offer-col">
                     <h3>Appliances</h3>
-                    <img src="/images/appliance.svg" alt="construction" />
+                    <img src="images/appliance.svg" alt="construction" />
                     <p>Buy any applicance you are looking for with just one click</p>
                 </div>
             </a>
@@ -161,19 +163,19 @@
 
             <div class="row">
                 <div class="global-col">
-                    <img src="/images/London.jpg" alt="London" />
+                    <img src="images/London.jpg" alt="London" />
                     <div class="layer">
                         <h3>London</h3>
                     </div>
                 </div>
                 <div class="global-col">
-                    <img src="/images/Paris.jpg" alt="London" />
+                    <img src="images/Paris.jpg" alt="London" />
                     <div class="layer">
                         <h3>Paris</h3>
                     </div>
                 </div>
                 <div class="global-col">
-                    <img src="/images/NewYork.jpg" alt="London" />
+                    <img src="images/NewYork.jpg" alt="London" />
                     <div class="layer">
                         <h3>New York</h3>
                     </div>
@@ -189,7 +191,7 @@
         </div>
         <!-- Full-width slides/quotes -->
         <div class="mySlides">
-            <img src="/images/PFP.png" alt="" />
+            <img src="images/PFP.png" alt="" />
             <q>I like to use that Website a lot! It always has what I am looking for
                 which is amazing!</q>
             <p class="author">- Anonymous</p>
@@ -201,7 +203,7 @@
         </div>
 
         <div class="mySlides">
-            <img src="/images/PFP.png" alt="" />
+            <img src="images/PFP.png" alt="" />
             <q>A very easy to use website to use and the service is great!</q>
             <p class="author">- Anonymous</p>
             <i class="fa fa-star"></i>
@@ -211,7 +213,7 @@
         </div>
 
         <div class="mySlides">
-            <img src="/images/PFP.png" alt="" />
+            <img src="images/PFP.png" alt="" />
             <q>I really like the customer support and the variety of categories I
                 can choose from.</q>
             <p class="author">- Anonymous</p>
@@ -231,7 +233,8 @@
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
 
-    <section class="cta">
+    <section class="cta"
+        style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(images/support.jpg);">
         <h1>Have Any Trouble? You Can Contact Us Now!</h1>
         <a href="ContactUs.php" class="hero-btn">CONTACT US</a>
     </section>
