@@ -18,10 +18,10 @@
     ?>
     <script>
         function reject_confirm() {
-            confirm("Are you sure to reject the RFQ?")
+            confirm("Are you sure to reject this RFQ?")
         }
         function accept_confirm() {
-            confirm("Are you sure to accept the RFQ?");
+            confirm("Are you sure to approve this RFQ?");
         }
     </script>
 
@@ -62,14 +62,40 @@
                                     <td><?php echo $row['user_name'];?></td>
                                     <td><?php echo $row['product_name'];?></td>
                                     <td><?php echo $row['quantity'];?></td>
-                                    <td><?php echo $row['price'];?></td>
-                                    <td><?php echo $total = ($row['price']*$row['quantity']);?></td>
-                                    <td><?php echo $row['supplier'];?></td>
-                                    <td> 
-                                        <a class="btn" onclick="accept_confirm()" href="accept.php?image=<?php echo $row['image'];?>&id=<?php echo $row['id'];?>&user_id=<?php echo $row['user_id'];?>&user_name=<?php echo $row['user_name'];?>&product_name=<?php echo $row['product_name'];?>&quantity=<?php echo $row['quantity'];?>&price=<?php echo $row['price'];?>"> Accept 
+                                    <td>$<?php echo $row['price'];?></td>
+                                    <td>$<?php echo $total = ($row['price']*$row['quantity']);?></td>
+                                    <td><?php if ($row['supplier'] == null) {?>
+                                        <form action="">
+                                            <select name='suppliers' id='suppliers'>
+
+                                        <?php
+                                        $supplier_query = mysqli_query($conn, "SELECT * FROM user_form") or die('query failed');
+                                            if(mysqli_num_rows($supplier_query) > 0){
+                                            while($row = mysqli_fetch_assoc($supplier_query)){
+                                                if($row['user_type'] == 'supplier')
+                                                {
+                                        ?>
+                                    <option selected disabled>Select Supplier</option>
+                                    <option><?php echo $row['user_name']; ?></option>
+                                        <?php
+                                                }
+                                            }
+                                            }
+                                        ?>
+                                        <input type="submit" value="Submit" name="submit">
+                                        </form>
+                                        <?php
+                                            }
+                                            else {
+                                                echo $row['supplier'];
+                                            }
+                                        ?>
                                     </td>
                                     <td> 
-                                        <a class="btn" onclick="reject_confirm()" href="reject.php?image=<?php echo $row['image'];?>&id=<?php echo $row['id'];?>&user_id=<?php echo $row['user_id'];?>&user_name=<?php echo $row['user_name'];?>&product_name=<?php echo $row['product_name'];?>&quantity=<?php echo $row['quantity'];?>&price=<?php echo $row['price'];?>"> Reject 
+                                        <a class="btn" onclick="accept_confirm()" href="accept.php?supplier=<?php echo $row['supplier'];?>&image=<?php echo $row['image'];?>&id=<?php echo $row['id'];?>&user_id=<?php echo $row['user_id'];?>&user_name=<?php echo $row['user_name'];?>&product_name=<?php echo $row['product_name'];?>&quantity=<?php echo $row['quantity'];?>&price=<?php echo $row['price'];?>"> Approve 
+                                    </td>
+                                    <td> 
+                                        <a class="btn" onclick="reject_confirm()" href="reject.php?supplier=<?php echo $row['supplier'];?>&image=<?php echo $row['image'];?>&id=<?php echo $row['id'];?>&user_id=<?php echo $row['user_id'];?>&user_name=<?php echo $row['user_name'];?>&product_name=<?php echo $row['product_name'];?>&quantity=<?php echo $row['quantity'];?>&price=<?php echo $row['price'];?>"> Reject 
                                     </td>
                                 </tr>
                     <?php 
