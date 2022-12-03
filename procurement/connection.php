@@ -1,14 +1,16 @@
 <?php
+include '../procurement/procurement.php';
+
 $hostname='localhost';
 $db_username = 'root';
 $db_password='';
 $db_name='soen341_db';
 
-$user_name = 'karin';
 $product_name = $_POST['product_name'];
-$quantity = $_POST['quantity'];
 $price= $_POST['price'];
 $image = NULL;
+$quantity = $_POST['quantity'];
+$supplier = 'testingsup';
 $status = 'Approved';
 
 
@@ -17,16 +19,16 @@ $conn = mysqli_connect ($hostname,$db_username,$db_password,$db_name);
 if ($conn -> connect_error){
     die("Connection to the DB failed: ".$conn->connect_error);
 }elseif ($quantity*$price >= 5000) {
-    $stmt= $conn->prepare("INSERT INTO pending (user_name,product_name,quantity,price,image) VALUES(?,?,?,?,?)");
-    $stmt->bind_param("ssiis",$user_name,$product_name,$quantity,$price,$image);
+    $stmt= $conn->prepare("INSERT INTO pending (user_id,user_name,product_name,price,image,quantity,supplier) VALUES(?,?,?,?,?,?,?)");
+    $stmt->bind_param("issisis",$user_id,$user_name,$product_name,$price,$image,$quantity,$supplier);
     $stmt->execute();
     echo    
         '<script type="text/javascript">
     window.onload = function () { alert("RFQ sent for Approval");  location="procurement.php";}
         </script>';
 }else{
-    $stmt= $conn->prepare("INSERT INTO cart (user_name,product_name,image,quantity,price,status) VALUES(?,?,?,?,?,?)");
-    $stmt->bind_param("sssiis",$user_name,$product_name,$image,$quantity,$price,$status);
+    $stmt= $conn->prepare("INSERT INTO cart (user_id,user_name,product_name,price,image,quantity,status,supplier) VALUES(?,?,?,?,?,?,?,?)");
+    $stmt->bind_param("issisiss",$user_id,$user_name,$product_name,$price,$image,$quantity,$status,$supplier);
     $result = $stmt->execute();
 
     if($result){
