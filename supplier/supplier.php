@@ -105,6 +105,7 @@
                     ?>
                 </tbody>
             </table>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
             <script>
             $('.btn-delete').click(function (e) {
                 var row = $(this).closest('tr');
@@ -114,7 +115,7 @@
                 
                 $.ajax({
                     type: "POST",
-                    data: {product: product, supplier: supplier price: price},
+                    data: {product: product, supplier: supplier, price: price},
                     dataType: 'JSON',
                     url: "deletesupplier.php",
                     success: function(msg){
