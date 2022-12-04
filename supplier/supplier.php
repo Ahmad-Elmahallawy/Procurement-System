@@ -94,9 +94,7 @@
                                 echo "<td>" .$row['product_name'] ."</td>";
                                 echo "<td>" .$row['supplier'] ."</td>";
                                 echo "<td>" .$row['price'] ."</td>";
-                                echo "<td><a href='#' class='btn btn-danger btn-sm delete'>X</a></td>";
-
-
+                                echo "<td><a href='#' id = 'btn-delete' class='btn btn-danger btn-sm delete'>X</a></td>";
                                 echo "</tr>"; 
                             }
                             
@@ -107,12 +105,27 @@
                     ?>
                 </tbody>
             </table>
+            <script>
+            $('.btn-delete').click(function (e) {
+                var row = $(this).closest('tr');
+                var product = $row[0].val();
+                var supplier = $row[1].val();
+                var price = $row[2].val();
+                
+                $.ajax({
+                    type: "POST",
+                    data: {product: product, supplier: supplier price: price},
+                    dataType: 'JSON',
+                    url: "deletesupplier.php",
+                    success: function(msg){
+                    $('.answer').html(msg);
+                }
+                });
+            });
+            </script>
 
         </div>
     </div>
-
-
-
 </body>
 
 </html>
