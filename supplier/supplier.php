@@ -94,7 +94,7 @@
                                 echo "<td>" .$row['product_name'] ."</td>";
                                 echo "<td>" .$row['supplier'] ."</td>";
                                 echo "<td>" .$row['price'] ."</td>";
-                                echo "<td><a href='#' class='delete'>X</a></td>";
+                                echo "<td><button a href='#' id = 'btn-delete' class='delete'>X</a></td>";
                                 echo "</tr>"; 
                             }
                             
@@ -105,23 +105,23 @@
                     ?>
                 </tbody>
             </table>
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
             <script>
-            $(document).on('click', '.delete', function()  {
-                var row = $(this).closest('tr');
-                var product = $row[0].val();
-                var supplier = $row[1].val();
-                var price = $row[2].val();
-                
-                $.ajax({
-                    type: "POST",
-                    data: {product: product, supplier: supplier, price: price},
-                    dataType: 'JSON',
-                    url: "deletesupplier.php",
-                    success: function(msg){
-                    $('.answer').html(msg);
-                }
+            $(document).on('click', '.delete', function() {
+                var row = []
+                $(this).parent().siblings('td').each(function() {
+                    row.push($(this).html());
                 });
+                var product_name = row[0];
+                var supplier = row[1];
+                var price = row[2];
+
+                $.post('deletesupplier.php', {
+                    product_name: product_name,
+                    supplier: supplier,
+                    price: price
+                }).done((data) => console.log(data));
+                location.reload();
             });
             </script>
 
@@ -130,4 +130,3 @@
 </body>
 
 </html>
-

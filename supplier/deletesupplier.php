@@ -1,6 +1,6 @@
 <?php
         include "supplier.php";
-        $title = $_POST['product'];
+        $product_name = $_POST['product_name'];
         $supplier_name = $_POST['supplier'];
         $price = $_POST['price'];
 
@@ -18,7 +18,7 @@
         die("Connection failed: " . $conn->connect_error);
         }
         //check for table name
-        $sql = "DELETE FROM products WHERE product_name = '$title' AND price = '$price' AND supplier = '$supplier_name'";
+        $sql = "DELETE FROM products WHERE product_name = '$product_name' AND price = '$price' AND supplier = '$supplier_name'";
         if ($conn->query($sql) === TRUE) {
             echo "<p class='success' style = 'background-color: green; color: white; text-align:center; ' onload = 'test()'>New record created successfully</p>";
         } else {
