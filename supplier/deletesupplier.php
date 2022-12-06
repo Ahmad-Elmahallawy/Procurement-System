@@ -18,7 +18,7 @@
         die("Connection failed: " . $conn->connect_error);
         }
         //check for table name
-        $sql = "DELETE FROM products WHERE product_name = '$title' AND price = '$price' AND supplier = '$supplier_name';
+        $sql = "DELETE FROM products WHERE product_name = '$title' AND price = '$price' AND supplier = '$supplier_name'";
         if ($conn->query($sql) === TRUE) {
             echo "<p class='success' style = 'background-color: green; color: white; text-align:center; ' onload = 'test()'>New record created successfully</p>";
         } else {
