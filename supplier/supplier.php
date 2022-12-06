@@ -94,7 +94,7 @@
                                 echo "<td>" .$row['product_name'] ."</td>";
                                 echo "<td>" .$row['supplier'] ."</td>";
                                 echo "<td>" .$row['price'] ."</td>";
-                                echo "<td><a href='#' id = 'btn-delete' class='btn btn-danger btn-sm delete'>X</a></td>";
+                                echo "<td><a href='#' class='delete'>X</a></td>";
                                 echo "</tr>"; 
                             }
                             
@@ -107,7 +107,7 @@
             </table>
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
             <script>
-            $('.btn-delete').click(function (e) {
+            $(document).on('click', '.delete', function()  {
                 var row = $(this).closest('tr');
                 var product = $row[0].val();
                 var supplier = $row[1].val();
@@ -130,3 +130,4 @@
 </body>
 
 </html>
+
