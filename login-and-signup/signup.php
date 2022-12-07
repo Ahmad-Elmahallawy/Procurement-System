@@ -66,7 +66,7 @@ if(isset($_POST['submit'])){
                 ?>
 
                 <div class="inputs">
-                    <input type="text" name="name" required id="contact-name" onkeyup="validateName()">
+                    <input type="text" name="name" required id="contact-name" onkeydown="validateName()">
                     <label>Name</label>
                     <span id="name-error"></span>
                 </div>
@@ -76,12 +76,14 @@ if(isset($_POST['submit'])){
                     <span id="email-error"></span>
                 </div>
                 <div class="inputs">
-                    <input type="password" name="password" required id="pass1" onkeydown="validatePassword()">
+                    <input type="password" minlength="8" name=" password" required id="pass1"
+                        onkeydown="validatePassword()">
                     <label>Password</label>
                     <span id="password-error"></span>
                 </div>
                 <div class="inputs">
-                    <input type="password" name="cpassword" required id="pass2" onkeydown="validatePassword2()">
+                    <input type="password" minlength="8" name="cpassword" required id="pass2"
+                        onkeyup="validatePassword2()">
                     <label>Confirm Passowrd</label>
                     <span id="cpassword-error"></span>
                 </div>
