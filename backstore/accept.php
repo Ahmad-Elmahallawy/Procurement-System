@@ -1,9 +1,6 @@
 <?php
 
-$hostname = 'localhost';
-$db_username = 'root';
-$db_password = '';
-$db_name = "soen341_db";
+include '../login-and-signup/config.php';
 
 $id = $_GET['id'];
 $supplier = $_GET['supplier'];
@@ -16,12 +13,11 @@ $price = $_GET['price'];
 $status='Approved';
 
 //DB connection
-$conn = mysqli_connect($hostname,$db_username,$db_password,$db_name);
 if ($conn -> connect_error){
     die("Connection to the DB failed: ".$conn->connect_error);
 }else{
     $stmt= $conn->prepare("INSERT INTO cart (user_id,user_name,product_name,price,image,quantity,status,supplier) VALUES(?,?,?,?,?,?,?,?)");
-    $stmt->bind_param("isssiiss",$user_id,$user_name,$product_name,$image,$quantity,$price,$status,$supplier);
+    $stmt->bind_param("isssiiss",$user_id,$user_name,$product_name,$price,$image,$quantity,$status,$supplier);
     $result = $stmt->execute();
     if($result){
         echo "Approved Item Inserted to Cart";
@@ -37,6 +33,5 @@ if ($conn -> connect_error){
     } else {
         echo "Error deleting record from Pending table";
     }         
-
 }
 ?>
