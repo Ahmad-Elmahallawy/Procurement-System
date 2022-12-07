@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$con=mysqli_connect("localhost","root","","myusers") or die("Error");
+$con=mysqli_connect("localhost","root","","soen341_db") or die("Error");
 
 if(isset($_POST['addBtn'])){
     $fname=$_POST['fullname'];
@@ -24,19 +24,20 @@ if(isset($_POST['addBtn'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
-    <script src="https://kit.fontawesome.com/e73ec64d5b.js" crossorigin="anonymous"></script> 
+    <script src="https://kit.fontawesome.com/e73ec64d5b.js" crossorigin="anonymous"></script>
     <title>Users List</title>
     <link rel="stylesheet" href="userlist.css">
     <script src="./user_table.js"></script>
 
 <body>
 
-<?php
+    <?php
     //require_once ('../header/header.php');
 
             if (isset($_SESSION['status'])){
@@ -51,21 +52,21 @@ if(isset($_POST['addBtn'])){
             
 ?>
 
-<div class="wrapper">
-    <div class="container mt-4">
-        <h1 class="display-4 text-center"><span class="users">Users </span>List</h1>
-    <table class="table table-striped mt-5" id="data_table">
-    <tr>
-       
-        <th>FullName</th>
-        <th>Email</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>
-        <th><a href="#"></a></th> 
-    </tr>
+    <div class="wrapper">
+        <div class="container mt-4">
+            <h1 class="display-4 text-center"><span class="users">Users </span>List</h1>
+            <table class="table table-striped mt-5" id="data_table">
+                <tr>
 
-    <!-- <tr id="row1">
+                    <th>FullName</th>
+                    <th>Email</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>
+                    <th><a href="#"></a></th>
+                </tr>
+
+                <!-- <tr id="row1">
     <td id="first_name1">Shokhab</td>
     <td id="last_name1">Haydari</td>
     <td id="Email1">shokhabhaydari@gmail.com</td>
@@ -92,28 +93,33 @@ if(isset($_POST['addBtn'])){
         <td id="last_name3">Doe</td>
         <td id="Email3">janedoe@gmail.com</td>
         <td id="rfq"><a href="../quotations/request3.php">RFQ</a></td> -->
-    <td class="updates">
-    <input type="button"  name="editBtn" id="edit_button3" value="Edit" class="btn btn-primary" onclick="edit_row('3')" onmouseup="this.blur()">
-    <input type="button" name="saveBtn" id="save_button3" value="Save" class="btn btn-primary" onclick="save_row('3')" onmouseup="this.blur()">
-    <input type="button"  name="deleteBtn" value="Delete" class="btn btn-primary" onclick="delete_row('3')" onmouseup="this.blur()">
-    </td>
-    </tr>
+                <td class="updates">
+                    <input type="button" name="editBtn" id="edit_button3" value="Edit" class="btn btn-primary"
+                        onclick="edit_row('3')" onmouseup="this.blur()">
+                    <input type="button" name="saveBtn" id="save_button3" value="Save" class="btn btn-primary"
+                        onclick="save_row('3')" onmouseup="this.blur()">
+                    <input type="button" name="deleteBtn" value="Delete" class="btn btn-primary"
+                        onclick="delete_row('3')" onmouseup="this.blur()">
+                </td>
+                </tr>
 
 
-    <form  method="POST" name="edit">
-        <tr>
-        <td><input type="text" name="fullname"></td>
-        <td><input type="text" name="email"></td>
-        <!-- <td><input type="text" name="usertype" ></td> -->
-        <td></td>
-        <td><input type="submit" name="addBtn" id="add_button" class="btn btn-primary" onclick="add_row()" onmouseup="this.blur()" value="Add Row"></td>
-        </tr>
+                <form method="POST" name="edit">
+                    <tr>
+                        <td><input type="text" name="fullname"></td>
+                        <td><input type="text" name="email"></td>
+                        <!-- <td><input type="text" name="usertype" ></td> -->
+                        <td></td>
+                        <td><input type="submit" name="addBtn" id="add_button" class="btn btn-primary"
+                                onclick="add_row()" onmouseup="this.blur()" value="Add Row"></td>
+                    </tr>
 
-        </table>
+            </table>
         </div>
-    </form>
-    
-</div>
+        </form>
+
+    </div>
 
 </body>
+
 </html>

@@ -6,13 +6,14 @@ body{
     height: 50px;
 }
 
+
+
 .form-container {
   width: 450px;
   background: #363636;
-  padding: 30px;
   border-radius: 10px;
   border: 2px solid #ff8177;
-  height: 600px;
+  height: 650px;
   box-shadow: 0 0 10px #ff8177;
   justify-content: center;
 }
@@ -85,12 +86,12 @@ body {
 
 .title {
   color: #ff8177;
-  height: 60px;
+  height: 15px;
 }
 
 .title h3 {
   display: block;
-  font-size: 25px;
+  font-size: 22px;
 }
 
 .btn {
@@ -142,6 +143,8 @@ select {
 }
 
 .error-msg{
+  margin: 0;
+  padding: 0;
   background: crimson;
   color: #fff;
   border-radius: 5px;
@@ -157,4 +160,9 @@ select {
   .form-container {
     width: 100%;
   }
+}
+
+.err{
+  padding: 0;
+  margin: 0;
 }

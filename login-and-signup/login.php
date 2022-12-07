@@ -52,7 +52,7 @@ if(isset($_POST['submit'])){
     }
 
     .form-container {
-        height: 350px;
+        height: 450px;
     }
 
     .wrapper {
@@ -69,12 +69,12 @@ if(isset($_POST['submit'])){
         <div class="form-container">
             <form action="" method="post">
                 <div class="title">
-                    <h3 style="display:block;">Login</h3>
+                    <h3>Login</h3>
                 </div>
                 <?php
                     if(isset($error)){
                         foreach($error as $error){
-                            echo '<div class= "title">';
+                            echo '<div class= "title err">';
                             echo '<p class="error-msg">' .$error. '</p>';
                             echo '</div>';
                     };
