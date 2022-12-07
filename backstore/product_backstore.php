@@ -64,25 +64,29 @@
                                     <td><?php echo $row['quantity'];?></td>
                                     <td>$<?php echo $row['price'];?></td>
                                     <td>$<?php echo $total = ($row['price']*$row['quantity']);?></td>
-                                    <td><?php if ($row['supplier'] == null) {?>
+                                    <td>
+                                        <?php if ($row['supplier'] == null) {?>
                                         <form action="">
                                             <select name='suppliers' id='suppliers'>
 
                                         <?php
                                         $supplier_query = mysqli_query($conn, "SELECT * FROM user_form") or die('query failed');
                                             if(mysqli_num_rows($supplier_query) > 0){
-                                            while($row = mysqli_fetch_assoc($supplier_query)){
-                                                if($row['user_type'] == 'supplier')
+                                            while($fetch = mysqli_fetch_assoc($supplier_query)){
+                                                if($fetch['user_type'] == 'supplier')
                                                 {
                                         ?>
                                     <option selected disabled>Select Supplier</option>
-                                    <option><?php echo $row['user_name']; ?></option>
+                                    <option><?php echo $fetch['user_name']; ?></option>
                                         <?php
                                                 }
+                                                
                                             }
                                             }
                                         ?>
+                                        <input type="hidden" name="current_id" value="<?php echo $row['id']; ?>">
                                         <input type="submit" value="Submit" name="submit">
+
                                         </form>
                                         <?php
                                             }
