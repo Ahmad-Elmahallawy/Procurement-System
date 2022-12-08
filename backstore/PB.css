@@ -140,3 +140,26 @@ body {
     padding: 10px;
   }
 }
+
+.wrapper {
+  padding:0 20px;
+  margin:0, auto;
+  max-width: 1200px;
+  padding-bottom: 70px;
+}
+
+.wrapper .container table {
+  margin-left: auto;
+  margin-right: right;
+  width: 100%;
+  text-align: center;
+  border:var(--border);
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+  background-color: var(--white);
+}
+
+.wrapper .container .flex{
+    margin-top: 10px;
+    text-align: center; 
+  }
