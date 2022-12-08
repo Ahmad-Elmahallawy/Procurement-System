@@ -47,7 +47,7 @@
 
         <div class="inputs">
           <input type="number" name="price" required min="1" max="1000000" />
-          <label>Estimated Price: * </label>
+          <label>Estimated Price / Unit: * </label>
           <br>
         </div>
 

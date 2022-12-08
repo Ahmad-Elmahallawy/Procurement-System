@@ -17,7 +17,7 @@ if ($conn -> connect_error){
     die("Connection to the DB failed: ".$conn->connect_error);
 }else{
     $stmt= $conn->prepare("INSERT INTO cart (user_id,user_name,product_name,price,image,quantity,status,supplier) VALUES(?,?,?,?,?,?,?,?)");
-    $stmt->bind_param("isssiiss",$user_id,$user_name,$product_name,$price,$image,$quantity,$status,$supplier);
+    $stmt->bind_param("issisiss",$user_id,$user_name,$product_name,$price,$image,$quantity,$status,$supplier);
     $result = $stmt->execute();
     if($result){
         echo "Rejected Item Inserted to Cart";
