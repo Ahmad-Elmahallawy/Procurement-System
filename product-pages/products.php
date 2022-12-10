@@ -3,10 +3,14 @@ require_once ('../header/header.php');
 include '../login-and-signup/config.php';
 $user_id = $_SESSION['id'];
 
-$select = " SELECT * FROM user_form WHERE id = '$user_id'";
-$result = mysqli_query($conn, $select);
-$row = mysqli_fetch_array($result);
-$user_name = $row['user_name'];
+if(!isset($user_id)){
+   header('location:../login-and-signup/login.php');
+} else {
+   $select = " SELECT * FROM user_form WHERE id = '$user_id'";
+   $result = mysqli_query($conn, $select);
+   $row = mysqli_fetch_array($result);
+   $user_name = $row['user_name'];
+}
 
 
 if(isset($_POST['add_to_pending'])){
@@ -14,12 +18,15 @@ if(isset($_POST['add_to_pending'])){
    $product_price = $_POST['product_price'];
    $product_image = $_POST['product_image'];
    $product_quantity = $_POST['product_quantity'];
-   $supplier = 'NULL';
-
-$select_pending = mysqli_query($conn, "SELECT * FROM `pending` WHERE product_name = '$product_name' AND user_id = '$user_id'") or die('query failed');
+   $supplier = NULL;
+   
+$select_pending = mysqli_query($conn, "SELECT * FROM `pending` WHERE product_name = '$product_name' AND user_id = '$user_id' AND quantity = '$product_quantity'") or die('query failed');
+$select_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE product_name = '$product_name' AND user_id = '$user_id' AND quantity = '$product_quantity'") or die('query failed');
 
 if(mysqli_num_rows($select_pending) > 0){
-   $message[] = 'RFQ already submitted for approval!';
+   $message[] = 'This RFQ has already been submitted for approval!';
+}else if(mysqli_num_rows($select_cart) > 0){
+   $message[] = 'This RFQ has already been submitted and approved!';
 }else if ($product_price * $product_quantity >= 5000)
 {
    mysqli_query($conn, "INSERT INTO `pending`(user_id, user_name, product_name, price, image, quantity, supplier) VALUES('$user_id', '$user_name', '$product_name', '$product_price', '$product_image', '$product_quantity', '$supplier')") or die('query failed');

@@ -53,7 +53,7 @@
 
         <div class="btn">
           <input type="submit" name="submit" value="Generate RFQ" class="form-btn" id="btn1">
-          <input type="button" name="trans" value="trans RFQ" class="form-btn" id="btn1" onclick="window.location.href='../backstore/product_backstore.php';" />
+          <!-- <input type="button" name="trans" value="trans RFQ" class="form-btn" id="btn1" onclick="window.location.href='../backstore/product_backstore.php';" /> -->
           <input type="reset" name="reset" value="Reset RFQ" class="form-btn" id="btn2" />
         </div>
 
