@@ -19,20 +19,14 @@ if ($conn -> connect_error){
     $stmt= $conn->prepare("INSERT INTO cart (user_id,user_name,product_name,price,image,quantity,status,supplier) VALUES(?,?,?,?,?,?,?,?)");
     $stmt->bind_param("issisiss",$user_id,$user_name,$product_name,$price,$image,$quantity,$status,$supplier);
     $result = $stmt->execute();
-    if($result){
-        echo "Rejected Item Inserted to Cart";
-    }else{
-        echo "Error moving record to Cart table";
-    }
+    echo 
+        '<script type="text/javascript">
+            window.onload = function () { alert("Rejected Product Added to the Users Cart with Status Rejected");  location="product_backstore.php";}
+        </script>';
 
     $query = "DELETE FROM pending WHERE id = '$id';";
     $result = mysqli_query($conn, $query);
-    if ($result) {
-        echo"Deleted";
-        header("location: product_backstore.php");
-    } else {
-        echo "Error deleting record from Pending table";
-    }         
 
+    
 }
 ?>

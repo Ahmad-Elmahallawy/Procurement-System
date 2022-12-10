@@ -16,14 +16,6 @@
     <?php 
         require_once ('../header/header.php');
     ?>
-    <script>
-        function reject_confirm() {
-            confirm("Are you sure to reject this RFQ?")
-        }
-        function accept_confirm() {
-            confirm("Are you sure to approve this RFQ?");
-        }
-    </script>
 
     <div class="wrapper">
         <div class="container">
@@ -105,10 +97,10 @@
                                     ?>
                                     </td>
                                     <td> 
-                                        <a class="btn" onclick="accept_confirm()" href="accept.php?supplier=<?php echo $fetch_pending['supplier'];?>&image=<?php echo $fetch_pending['image'];?>&id=<?php echo $fetch_pending['id'];?>&user_id=<?php echo $fetch_pending['user_id'];?>&user_name=<?php echo $fetch_pending['user_name'];?>&product_name=<?php echo $fetch_pending['product_name'];?>&quantity=<?php echo $fetch_pending['quantity'];?>&price=<?php echo $fetch_pending['price'];?>"> Approve 
+                                        <a class="btn" href="accept.php?supplier=<?php echo $fetch_pending['supplier'];?>&image=<?php echo $fetch_pending['image'];?>&id=<?php echo $fetch_pending['id'];?>&user_id=<?php echo $fetch_pending['user_id'];?>&user_name=<?php echo $fetch_pending['user_name'];?>&product_name=<?php echo $fetch_pending['product_name'];?>&quantity=<?php echo $fetch_pending['quantity'];?>&price=<?php echo $fetch_pending['price'];?>"> Approve 
                                     </td>
                                     <td> 
-                                        <a class="btn" onclick="reject_confirm()" href="reject.php?supplier=<?php echo $fetch_pending['supplier'];?>&image=<?php echo $fetch_pending['image'];?>&id=<?php echo $fetch_pending['id'];?>&user_id=<?php echo $fetch_pending['user_id'];?>&user_name=<?php echo $fetch_pending['user_name'];?>&product_name=<?php echo $fetch_pending['product_name'];?>&quantity=<?php echo $fetch_pending['quantity'];?>&price=<?php echo $fetch_pending['price'];?>"> Reject 
+                                        <a class="btn" href="reject.php?supplier=<?php echo $fetch_pending['supplier'];?>&image=<?php echo $fetch_pending['image'];?>&id=<?php echo $fetch_pending['id'];?>&user_id=<?php echo $fetch_pending['user_id'];?>&user_name=<?php echo $fetch_pending['user_name'];?>&product_name=<?php echo $fetch_pending['product_name'];?>&quantity=<?php echo $fetch_pending['quantity'];?>&price=<?php echo $fetch_pending['price'];?>"> Reject 
                                     </td>
                                 </tr>
                     <?php 

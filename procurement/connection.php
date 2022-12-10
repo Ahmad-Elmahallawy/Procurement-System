@@ -30,13 +30,10 @@ if ($conn -> connect_error){
     $stmt= $conn->prepare("INSERT INTO cart (user_id,user_name,product_name,price,image,quantity,status,supplier) VALUES(?,?,?,?,?,?,?,?)");
     $stmt->bind_param("issisiss",$user_id,$user_name,$product_name,$price,$image,$quantity,$status,$supplier);
     $result = $stmt->execute();
-
-    if($result){
-        echo "Approved Item Inserted to Cart";
-        header("location: procurement.php");
-    }else{
-        echo "Error moving record to Cart table";
-    }
+    echo    
+        '<script type="text/javascript">
+    window.onload = function () { alert("Item added to your cart");  location="procurement.php";}
+        </script>';
 
 }
 ?>
