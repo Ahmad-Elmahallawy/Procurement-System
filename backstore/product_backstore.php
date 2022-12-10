@@ -34,8 +34,7 @@
                         <th scope="col"> Price</th>
                         <th scope="col"> Total</th>
                         <th scope="col"> Supplier</th>
-                        <th scope="col"> Action</th>
-                        <th scope="col"> Action</th>
+                        <th scope="col" colspan="2"> Action</th>
                     </tr>
 
                     <!-- fetching data from database -->
